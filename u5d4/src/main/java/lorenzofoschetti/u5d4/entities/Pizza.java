@@ -1,8 +1,6 @@
 package lorenzofoschetti.u5d4.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Pizza {
+
+    @ManyToMany
+    @JoinTable(name = "pizze_toppings",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "topping_id"))
     List<Topping> toppings;
     @Id
     @GeneratedValue
